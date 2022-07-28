@@ -89,10 +89,10 @@ io.on('connection', (socket)=>{
           receiver_id:idReceiver ,
           message:messageBody,
           sender_id: socket.userId,
-          createdat: new Date()
+          date: new Date()
       }
       console.log(message);
-      callback({...message, createdat: moment(message.createdat).format('LT')})
+      callback({...message, date: moment(message.date).format('LT')})
       messageModel.create(message)
       .then(()=>{
           socket.broadcast.to(idReceiver).emit('newMessage', message)
