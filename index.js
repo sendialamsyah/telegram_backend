@@ -47,7 +47,7 @@ const httpServer = http.createServer(app)
 const io = new Server(httpServer, {
   cors:{
     //   credentials: true,
-      origin: 'http://localhost:3000'
+      origin: 'https://telegram-chat.vercel.app'
   }
 })
 
