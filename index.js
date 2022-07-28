@@ -95,7 +95,9 @@ io.on('connection', (socket)=>{
       callback({...message, date: moment(message.date).format('LT')})
       messageModel.create(message)
       .then(()=>{
-          socket.broadcast.to(idReceiver).emit('newMessage', message)
+          socket.broadcast.to(idReceiver).emit('newMessage', {
+            ...message, date: moment(message.date).format('LT')
+          })
       })
       // console.log('roomSender', room);
       // io.to(`room:${room}`).emit('newMessage', {
