@@ -5,7 +5,7 @@ const authRouter = require('./users')
 const messagesRoute = require('./messages')
 
 Router
-    .use('/user', authRouter)
-    .use('/message', messagesRoute)
+    .use('/users', authRouter)
+    .use('/messages', messagesRoute)
 
 module.exports = Router

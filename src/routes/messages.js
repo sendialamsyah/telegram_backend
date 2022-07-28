@@ -1,9 +1,10 @@
 const express = require('express')
 const router = express.Router()
 const {protect} = require('../middlewares/auth')
-const {getMessage} = require('../controller/messages')
+const {getMessage, deleteMessage} = require('../controller/messages')
 
 router
-    .get('/:receiverId', protect, getMessage)
+    .get('/:receiver_id', protect, getMessage)
+    .delete('/:id', deleteMessage)
 
 module.exports = router

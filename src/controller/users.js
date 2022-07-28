@@ -19,7 +19,7 @@ const register = async (req, res, next) => {
       return next(createError(403, 'user sudah terdaftar'))
     }
     const data = {
-      iduser: uuidv4(),
+      id: uuidv4(),
       name,
       email,
       password: passwordHash,
@@ -61,7 +61,7 @@ const login = async (req, res, next) => {
     delete user.password
 
     const payload = {
-      iduser: user.iduser,
+      id: user.id,
       name: user.name,
       email: user.email,
     }
@@ -91,12 +91,12 @@ const refreshToken = (req, res, next) => {
 
 const updateProfile = async (req, res, next) => {
   try {
-    const iduser = req.params.iduser
+    const id = req.params.id
     const { name, email, phonenumber } = req.body
     const images = req.file.path
     const ress = await cloudinary.uploader.upload(images)
     const data = {
-      iduser,
+      id,
       name,
       email,
       phonenumber,
@@ -110,15 +110,22 @@ const updateProfile = async (req, res, next) => {
   }
 }
 const getUsers = async(req, res, next)=>{
-  const iduser = req.decoded.iduser
-  const {rows} = await modelGetUsers(iduser)
+  const id = req.decoded.id
+  const {rows} = await modelGetUsers(id)
   commonHelper.response(res, rows, 200)
+}
+
+const getProfile = async (req, res, next) => {
+  const email = req.decoded.email
+  const { rows: [user] } = await findByEmail(email)
+  delete user.password
+  commonHelper.response(res, user, 200, 'get data sucess')
 }
 
 const detailUserById = async (req, res, next) => {
   try {
-    const iduser = req.params.iduser
-    const { rows: [user] } = await detailUser(iduser)
+    const id = req.params.id
+    const { rows: [user] } = await detailUser(id)
 
     commonHelper.response(res, user, 200, 'Get data from database')
   } catch (error) {
@@ -132,5 +139,6 @@ module.exports = {
   refreshToken,
   updateProfile,
   getUsers,
+  getProfile,
   detailUserById
 }

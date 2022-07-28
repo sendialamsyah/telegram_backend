@@ -17,15 +17,15 @@ const findByEmail = (email) => {
 }
 
 const createUser = ({
-  iduser,
+  id,
   name,
   email,
   password
 }) => {
   return new Promise((resolve, reject) => {
     pool.query(
-      'INSERT INTO users(iduser, name, email, password)VALUES($1, $2, $3, $4)',
-      [iduser, name, email, password],
+      'INSERT INTO users(id, name, email, password)VALUES($1, $2, $3, $4)',
+      [id, name, email, password],
       (err, result) => {
         if (!err) {
           resolve(result)
@@ -41,16 +41,16 @@ const updateUser = ({
   name,
   email,
   image,
-  iduser
+  id
 }) => {
   return new Promise((resolve, reject) => {
     pool.query(
-      'UPDATE users SET name = COALESCE($1, name), email = COALESCE($2, email), image = COALESCE($3, image) WHERE iduser = $4',
+      'UPDATE users SET name = COALESCE($1, name), email = COALESCE($2, email), image = COALESCE($3, image) WHERE id = $4',
       [
         name,
         email,
         image,
-        iduser
+        id
       ],
       (err, result) => {
         if (!err) {
@@ -62,9 +62,9 @@ const updateUser = ({
     )
   })
 }
-const getUsers = (iduser) => {
+const getUsers = (id) => {
   return new Promise((resolve, reject) => {
-    pool.query('SELECT * FROM users where iduser <> $1', [iduser], (error, result) => {
+    pool.query('SELECT * FROM users where id <> $1', [id], (error, result) => {
       if (!error) {
         resolve(result)
       } else {
@@ -74,9 +74,9 @@ const getUsers = (iduser) => {
   })
 }
 
-const detailUser = (iduser) => {
+const detailUser = (id) => {
   return new Promise((resolve, reject) => {
-    pool.query('SELECT * FROM users WHERE iduser = $1', [iduser], (err, result) => {
+    pool.query('SELECT * FROM users WHERE id = $1', [id], (err, result) => {
       if (!err) {
         resolve(result)
       } else {
