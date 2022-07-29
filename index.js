@@ -16,7 +16,10 @@ const messageModel = require('./src/models/messages')
 const app = express()
 app.use(express.json())
 app.use(morgan('dev'))
-app.use(cors())
+app.use(cors({
+  //   credentials: true,
+    origin: 'https://telegram-chat.vercel.app'
+}))
 helmet({
   crossOriginResourcePolicy: false
 })
