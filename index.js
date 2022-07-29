@@ -19,7 +19,7 @@ app.use(express.urlencoded({extended: false}))
 app.use(morgan('dev'))
 app.use(cors({
   //   credentials: true,
-    origin: 'https://telegram-chat-apps.vercel.app/'
+    origin: 'https://telegram-chat-apps.vercel.app'
 }))
 helmet({
   crossOriginResourcePolicy: false
@@ -51,7 +51,7 @@ const httpServer = http.createServer(app)
 const io = new Server(httpServer, {
   cors:{
     //   credentials: true,
-      origin: 'https://telegram-chat-apps.vercel.app/'
+      origin: 'https://telegram-chat-apps.vercel.app'
   }
 })
 
