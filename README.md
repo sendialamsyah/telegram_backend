@@ -22,6 +22,7 @@ Telegram API, is REST API used in [`Telegram App`](https://telegram-chat-apps.ve
 * [Node JS](https://nodejs.org/en/docs/)
 * [Express JS](https://expressjs.com/)
 * [Cloudinary](https://cloudinary.com/)
+* [Socket.io](https://socket.io/)
 
 
 <!-- GETTING STARTED -->
