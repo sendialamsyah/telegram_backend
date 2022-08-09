@@ -81,6 +81,7 @@ Contributions are what make the open source community such an amazing place to b
 ## Related Project
 * [`Telegram App`](https://telegram-chat-apps.vercel.app/)
 * [`Telegram Rest API`](https://telegram-chat-apps.herokuapp.com/)
+* [`Telegram Frontend Repository`](https://github.com/sendialamsyah/telegram_app)
 
 
 <!-- CONTACT -->
